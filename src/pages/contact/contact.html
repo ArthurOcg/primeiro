@@ -1,17 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Começar
     </ion-title>
   </ion-navbar>
 </ion-header>
 
+<!-- <img width="400px" *ngIf="img" [src]="img" alt="Foto que foi tirada"> -->
+
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+
+  
+    <div class="" *ngIf="img">
+      <h2>Sua foto:</h2>
+      <img class="confirm-image" src="{{img}}">
+      <h4> Deseja continuar ou tirar outra foto?</h4>
+    </div >
+  
+
+  <div>
+    <button ion-button block (click)="tirarfoto()">Tirar foto</button>
+    <button ion-button block (click)="avancar()" *ngIf="img">Avançar</button>
+  </div>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-about',
@@ -7,8 +7,9 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController) {
-
+  img = '';
+  constructor(public navCtrl: NavController,  public navParams: NavParams) {
+    this.img = navParams.data;
   }
 
 }
