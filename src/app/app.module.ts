@@ -11,8 +11,11 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { File } from '@ionic-native/file/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { AnalizeProvider } from '../providers/analize/analize';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { AnalizeProvider } from '../providers/analize/analize';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,9 +43,11 @@ import { AnalizeProvider } from '../providers/analize/analize';
     StatusBar,
     SplashScreen,
     Camera,
+    File,
+    FilePath,
     Base64ToGallery,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AnalizeProvider
+    AnalizeProvider,
   ]
 })
 export class AppModule {}
