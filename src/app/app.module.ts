@@ -16,6 +16,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { AnalizeProvider } from '../providers/analize/analize';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

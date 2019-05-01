@@ -9,7 +9,9 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class AboutPage {
   ERROR = ""
+  resposta;
   img = '';
+  retorno =''
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public analize: AnalizeProvider) {
@@ -19,12 +21,16 @@ export class AboutPage {
 
   ionViewWillEnter() {
     if (this.img) {
-
-      this.analize.enviaImagem(this.img).subscribe(res => {
-        console.log(res)
+      console.log("Está com a imagem")
+      this.analize.outra(this.img).subscribe(res => {
+        console.log("Chamou.")
+        this.resposta = res;
+        this.retorno = this.resposta.imagem;
+        console.log(res.histo_cort)
       }, error => {
         this.ERROR = error;
-        console.error("Deu erro", error.message, "status:", error.status, "code:", error.code, "erro:", error.error)
+        console.error(error);
+        //console.error("Deu erro", error.message, "status:", error.status, "code:", error.code, "erro:", error.error)
       });
     }
   }

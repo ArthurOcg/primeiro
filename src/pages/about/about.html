@@ -13,9 +13,28 @@
   <p>
     A foto está sendo enviada para análise, aguarde alguns instantes.
   </p>
-<ion-content padding>
-  <img src="{{img}}" *ngIf=[img]>
-</ion-content>
+
+
+  <div *ngIf=[retorno]>
+    <img width="400px" src="{{retorno}}">
+    <ion-item>
+      <ion-textarea position="floating" disabled
+      rows="10" cols="20"
+      value= {{resposta?.histo_cort}}></ion-textarea>
+    </ion-item>
+    
+
+  </div>
+
+ 
+  <!-- <ion-list *ngFor="let img in resposta">  
+    <ion-item>
+      {{img}}
+
+    </ion-item> 
+    
+  </ion-list>
+  -->
 
 <div padding>
     <p *ngIf=[ERROR]>

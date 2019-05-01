@@ -13,13 +13,17 @@
   
     <div class="" *ngIf="img">
       <h2>Sua foto:</h2>
-      <img class="confirm-image" src="{{img}}">
+      
+      
       <h4> Deseja continuar ou tirar outra foto?</h4>
     </div >
-  
+    <div class="" *ngIf="err">
+      <h2>Seu erro: {{err | json}}</h2>
+      
+    </div >
 
   <div>
-    <button ion-button block (click)="tirarfoto()">Tirar foto</button>
+      <button ion-button block (click)="tirarfoto()">Tirar foto</button>
     <button ion-button block (click)="avancar()" *ngIf="img">Avançar</button>
   </div>
 </ion-content>
