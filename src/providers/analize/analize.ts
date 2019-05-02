@@ -18,7 +18,6 @@ export class AnalizeProvider {
   enviaImagem(img: string): Observable<any> {
     let headers = new HttpHeaders({'Access-Control-Allow-Headers': 'Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'});
     //headers.set("Content-Type","multipart/form-data");
-    let url= 'https://jsonplaceholder.typicode.com/photos';
     let url2='https://0.0.0.0:5000/ui'
     let data = {"imagem": img}
     return this.http.post(url2, data, {headers: headers});

@@ -6,14 +6,14 @@
   </ion-navbar>
 </ion-header>
 
-<!-- <img width="400px" *ngIf="img" [src]="img" alt="Foto que foi tirada"> -->
 
 <ion-content>
-
   
-    <div class="" *ngIf="img">
-      <h2>Sua foto:</h2>
-      
+  
+  <div class="" *ngIf="img">
+    <h2>Sua foto:</h2>
+    
+    <!-- <img width="400px" *ngIf="img" [src]="img" alt="Foto que foi tirada"> -->
       
       <h4> Deseja continuar ou tirar outra foto?</h4>
     </div >
@@ -26,4 +26,5 @@
       <button ion-button block (click)="tirarfoto()">Tirar foto</button>
     <button ion-button block (click)="avancar()" *ngIf="img">Avançar</button>
   </div>
+  <button ion-button block color="tertiary" (click)="abrirCamera()">Camera Preview </button>
 </ion-content>

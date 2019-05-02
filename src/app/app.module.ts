@@ -13,10 +13,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
-import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { AnalizeProvider } from '../providers/analize/analize';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CameraPreview } from '@ionic-native/camera-preview/ngx';
 
 
 @NgModule({
@@ -46,9 +46,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     Camera,
+    CameraPreview,
     File,
     FilePath,
-    Base64ToGallery,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AnalizeProvider,
   ]

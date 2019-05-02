@@ -2,7 +2,6 @@ import { AboutPage } from './../about/about';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CameraOptions, Camera } from '@ionic-native/camera';
-//import { Base64ToGallery, Base64ToGalleryOptions } from '@ionic-native/base64-to-gallery';
 import { File } from '@ionic-native/file/ngx';
 import { AnalizeProvider } from '../../providers/analize/analize';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -31,11 +30,11 @@ export class ContactPage {
     toBack: true,
     alpha: 1
   }
+  picture: string;
 
   constructor(public navCtrl: NavController,
     private camera: Camera,
     private analize: AnalizeProvider,
-    // private base64: Base64ToGallery,
     private cameraPreview: CameraPreview,
     private file: File,
     private fb: FormBuilder) {
@@ -61,10 +60,7 @@ export class ContactPage {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       this.img = 'data:image/jpeg;base64,' + imageData;
-      if (this.img) {
-        // this.salvar(this.img);
-      }
-      console.log('Entrou')
+      console.log('Pegou a foto')
     }, (err) => {
       console.log(err)
       // Handle error
@@ -91,6 +87,7 @@ export class ContactPage {
   avancar(): void {
     this.navCtrl.push(AboutPage, this.img);
   }
+
   teste() {
     console.log('Chamou serviço')
     this.analize.outra(this.img).subscribe(response => {
@@ -103,62 +100,50 @@ export class ContactPage {
     })
   }
 
-  salvar(img: string) {
 
-    /* let base64option : Base64ToGalleryOptions = {
-      prefix: 'img',
-      mediaScanner: false,
-
-  }; */
-    let name = 'Analize ' + new Date().getDate();
-
-    this.writeFile(img, 'Imagens', name)
-
-    /*   
-      this.base64.base64ToGallery(img, base64option).then(
-          res => console.log('Salvou ', res),
-          err => console.log('Error saving image to gallery ', err)); */
+  public mudarFoco(): void {
+    this.cameraPreview.setFocusMode(this.cameraPreview.FOCUS_MODE.FIXED);
   }
 
-  // start camera
-  this.cameraPreview.startCamera(this.cameraPreviewOpts).then(
-  (res) => {
-    console.log(res)
-  },
-  (err) => {
-    console.log(err)
-  });
+  public async abrirCamera() {
 
-// Set the handler to run every time we take a picture
-this.cameraPreview.setOnPictureTakenHandler().subscribe((result) => {
-  console.log(result);
-  // do something with the result
-});
+    // start camera
+    const result = await this.cameraPreview.startCamera(this.cameraPreviewOpts);
+  }
 
 
-// picture options
-const pictureOpts: CameraPreviewPictureOptions = {
-  width: 1280,
-  height: 1280,
-  quality: 100
+  public tirarFoto(): void {
+    // picture options
+    const pictureOpts: CameraPreviewPictureOptions = {
+      width: 1280,
+      height: 1280,
+      quality: 100
+    }
+
+    // take a picture
+    this.cameraPreview.takePicture(pictureOpts).then((imageData) => {
+      this.picture = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+      this.picture = 'assets/img/test.jpg';
+    });
+
+    // set color effect to negative
+    //this.cameraPreview.setColorEffect('negative');
+  }
+
+  public capturaFocus(): void {
+    this.cameraPreview.getSupportedFocusModes();
+  }
+
+  public stopCamera(): void {
+    // Stop the camera preview
+    this.cameraPreview.stopCamera();
+  }
+
+  public trocarCamera(): void {
+    // Switch camera
+    this.cameraPreview.switchCamera();
+  }
+
 }
-
-// take a picture
-this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
-  this.picture = 'data:image/jpeg;base64,' + imageData;
-}, (err) => {
-  console.log(err);
-  this.picture = 'assets/img/test.jpg';
-});
-
-
-// Switch camera
-this.cameraPreview.switchCamera();
-
-// set color effect to negative
-this.cameraPreview.setColorEffect('negative');
-
-// Stop the camera preview
-this.cameraPreview.stopCamera();
-}
-
